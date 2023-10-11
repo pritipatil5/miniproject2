@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Font Awesome Icon Library -->
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .checked {
+      color: orange; 
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(#a93ca9, #c95c5c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .rating-container {
+      margin-bottom: 10px;
+    }
+
+    #comment {
+      width: 300px;
+      height: 140px;
+      margin-top: 10px;
+      resize: none;
+    }
+
+    .btn-submit {
+      margin-top: 10px;
+    }
+
+    /* Style for the image */
+    #my-image {
+      max-width: 100%; /* Ensure the image doesn't exceed its container's width */
+      height: auto; /* Maintain aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <div class="rating-container">
+    <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:40px;cursor:pointer;" class="fa fa-star checked"></span>
+    <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one" style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
+    <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one" style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
+    <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one" style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
+    <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one" style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
+  </div>
+  <textarea id="comment" placeholder="Enter your review"></textarea>
+
+  <button onclick="result()" type="button" class="btn btn-lg btn-success btn-submit">Submit</button>
+</body>
+<script>
+  var count;
+
+  function starmark(item) {
+    count = item.id[0];
+    sessionStorage.starRating = count;
+    var subid = item.id.substring(1);
+    for (var i = 0; i < 5; i++) {
+      if (i < count) {
+        document.getElementById((i + 1) + subid).style.color = "orange";
+      } else {
+        document.getElementById((i + 1) + subid).style.color = "black";
+      }
+    }
+  }
+
+  function result() {
+    alert("Rating: " + count + "\nReview: " + document.getElementById("comment").value);
+  }
+</script>
+</body>
+</html>
